@@ -1,0 +1,610 @@
+openapi: 3.0.3
+info:
+  title: DeliverCare
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://127.0.0.1:8000'
+paths:
+  /api/v1/generate-token:
+    post:
+      summary: 'Generate Token'
+      operationId: generateToken
+      description: 'This API will allow a partner to create API token with some x hours expiry and this token will be used for all subsequent API calls to fetch the data.'
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: 'Please enter your username for authentication.'
+                  example: anshul
+                password:
+                  type: string
+                  description: 'Please enter your password for authentication.'
+                  example: 12345678
+              required:
+                - username
+                - password
+      security: []
+  '/api/v1/validate-token/{token}':
+    get:
+      summary: 'Verify Token'
+      operationId: verifyToken
+      description: 'This API will allow  you to check validity of a token'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: token
+        description: ''
+        example: kYX6G6AnOfd2XX4jcLXXXXll8AxLXXXXx3BaQmjXXXXXyU9oKj1oSg8jNwmineMu
+        required: true
+        schema:
+          type: string
+  /api/v1/patient/list:
+    get:
+      summary: 'Patient List'
+      operationId: patientList
+      description: 'This API will allow fetch patients records. This will return only patient listing with basic information and IDs.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page number for pagination.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The page number for pagination.'
+            example: null
+        -
+          in: query
+          name: limit
+          description: 'The number of items per page.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page.'
+            example: null
+        -
+          in: query
+          name: search
+          description: 'Enter your search criteria to list results. You can search by patient name, city, and state.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Enter your search criteria to list results. You can search by patient name, city, and state.'
+            example: null
+        -
+          in: header
+          name: token
+          description: ''
+          example: ''
+          schema:
+            type: string
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: '500'
+                  msg: 'Invalid token. Please generate a new token.'
+                properties:
+                  status:
+                    type: string
+                    example: '500'
+                  msg:
+                    type: string
+                    example: 'Invalid token. Please generate a new token.'
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/rxs/list/{id}':
+    get:
+      summary: 'Rxs Listing'
+      operationId: rxsListing
+      description: 'This API will return all Rx information based on patient_id. Search will be available based on Rx number.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page number for pagination.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The page number for pagination.'
+            example: null
+        -
+          in: query
+          name: limit
+          description: 'The number of items per page.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page.'
+            example: null
+        -
+          in: query
+          name: search
+          description: 'Please enter rx number to search.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Please enter rx number to search.'
+            example: null
+        -
+          in: header
+          name: token
+          description: ''
+          example: ''
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: '498'
+                  msg: 'Invalid token. Please generate a new token.'
+                properties:
+                  status:
+                    type: string
+                    example: '498'
+                  msg:
+                    type: string
+                    example: 'Invalid token. Please generate a new token.'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Newleaf Id for rxs.'
+        example: null
+        required: true
+        schema:
+          type: string
+  /api/v1/drugs/list:
+    get:
+      summary: 'Drug Listing'
+      operationId: drugListing
+      description: 'This API will return all drugs available in the database. Search will be available based on drug name.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page number for pagination.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The page number for pagination.'
+            example: null
+        -
+          in: query
+          name: limit
+          description: 'The number of items per page.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page.'
+            example: null
+        -
+          in: query
+          name: search
+          description: 'Enter your search criteria to list results. You can search by drug name.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Enter your search criteria to list results. You can search by drug name.'
+            example: null
+        -
+          in: header
+          name: token
+          description: ''
+          example: ''
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: '498'
+                  msg: 'Invalid token. Please generate a new token.'
+                properties:
+                  status:
+                    type: string
+                    example: '498'
+                  msg:
+                    type: string
+                    example: 'Invalid token. Please generate a new token.'
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/refill-shipment/list:
+    get:
+      summary: 'Refill Shipment Listing'
+      operationId: refillShipmentListing
+      description: 'This API will return all refill shipments of patients. Search will be available based on patient name, order number, tracking number.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page number for pagination.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The page number for pagination.'
+            example: null
+        -
+          in: query
+          name: limit
+          description: 'The number of items per page.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page.'
+            example: null
+        -
+          in: query
+          name: search
+          description: 'Enter your search criteria to list results. You can search by patient name, courier name,order_number,order_date,tracking_number.'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Enter your search criteria to list results. You can search by patient name, courier name,order_number,order_date,tracking_number.'
+            example: null
+        -
+          in: header
+          name: token
+          description: ''
+          example: ''
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: '498'
+                  msg: 'Invalid token. Please generate a new token.'
+                properties:
+                  status:
+                    type: string
+                    example: '498'
+                  msg:
+                    type: string
+                    example: 'Invalid token. Please generate a new token.'
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/refills/list:
+    get:
+      summary: 'Refills Listing'
+      operationId: refillsListing
+      description: 'This API will allow fetch refill orders records.'
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The page number for pagination.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The page number for pagination.'
+            example: null
+        -
+          in: query
+          name: limit
+          description: 'The number of items per page.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'The number of items per page.'
+            example: null
+        -
+          in: query
+          name: search
+          description: 'Please enter search parameter. you can search by patient_name, newleaf_order_number, order_number, tracking_number'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Please enter search parameter. you can search by patient_name, newleaf_order_number, order_number, tracking_number'
+            example: null
+        -
+          in: query
+          name: status
+          description: 'Please enter status, where as 1 (Pending) or 2 (In Progress) or 3 (Shipped)'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'Please enter status, where as 1 (Pending) or 2 (In Progress) or 3 (Shipped)'
+            example: null
+        -
+          in: query
+          name: start_date
+          description: 'Please enter start date, the format is Y-m-d'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Please enter start date, the format is Y-m-d'
+            example: null
+        -
+          in: query
+          name: end_date
+          description: 'Please enter end date, the format is Y-m-d'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Please enter end date, the format is Y-m-d'
+            example: null
+        -
+          in: header
+          name: token
+          description: ''
+          example: ''
+          schema:
+            type: string
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: '500'
+                  msg: 'Invalid token. Please generate a new token.'
+                properties:
+                  status:
+                    type: string
+                    example: '500'
+                  msg:
+                    type: string
+                    example: 'Invalid token. Please generate a new token.'
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/refills/details:
+    get:
+      summary: 'Refills Details'
+      operationId: refillsDetails
+      description: 'This API will return all refill history of particular Rx number and patient_id.'
+      parameters:
+        -
+          in: query
+          name: rx_number
+          description: 'Please enter rx_number.'
+          example: null
+          required: true
+          schema:
+            type: string
+            description: 'Please enter rx_number.'
+            example: null
+        -
+          in: query
+          name: patient_id
+          description: 'Please enter patient_id.'
+          example: null
+          required: true
+          schema:
+            type: string
+            description: 'Please enter patient_id.'
+            example: null
+        -
+          in: header
+          name: token
+          description: ''
+          example: ''
+          schema:
+            type: string
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: '500'
+                  msg: 'Invalid token. Please generate a new token.'
+                properties:
+                  status:
+                    type: string
+                    example: '500'
+                  msg:
+                    type: string
+                    example: 'Invalid token. Please generate a new token.'
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/refills/place-order:
+    get:
+      summary: 'Refills Place Order'
+      operationId: refillsPlaceOrder
+      description: ' This API will allow to place refill orders for patients and return order id.'
+      parameters:
+        -
+          in: query
+          name: email
+          description: 'Must be a valid nurse email address.'
+          example: claudine.jaskolski@delivercare.com
+          required: true
+          schema:
+            type: string
+            description: 'Must be a valid nurse email address.'
+            example: claudine.jaskolski@delivercare.com
+        -
+          in: query
+          name: patient_id
+          description: 'This patient id must match to patient newleaf_customer_id'
+          example: d382eebf-x27x-40c0-x9x9-xxxe2e6c9047
+          required: true
+          schema:
+            type: string
+            description: 'This patient id must match to patient newleaf_customer_id'
+            example: d382eebf-x27x-40c0-x9x9-xxxe2e6c9047
+        -
+          in: query
+          name: rx_numbers
+          description: 'It needs to be valid refillable rx number and assigned to this patient id, where this 7767577-R is separated by the number(7767577) and R,N,C that is type of refill'
+          example: 7767577-R
+          required: true
+          schema:
+            type: string
+            description: 'It needs to be valid refillable rx number and assigned to this patient id, where this 7767577-R is separated by the number(7767577) and R,N,C that is type of refill'
+            example: 7767577-R
+        -
+          in: query
+          name: shipping_method
+          description: 'Please enter required shipping method from below six example Only!! Example: FD2, FD1, FD3, RSD, FDS, ES2, RST'
+          example: FD1
+          required: true
+          schema:
+            type: string
+            description: 'Please enter required shipping method from below six example Only!! Example: FD2, FD1, FD3, RSD, FDS, ES2, RST'
+            example: FD1
+        -
+          in: query
+          name: signature_required
+          description: 'Please specify signature requirement, by passing 1 is signature required'
+          example: 1
+          required: false
+          schema:
+            type: string
+            description: 'Please specify signature requirement, by passing 1 is signature required'
+            example: 1
+        -
+          in: query
+          name: notes
+          description: 'Please add notes for refill order'
+          example: xyz
+          required: false
+          schema:
+            type: string
+            description: 'Please add notes for refill order'
+            example: xyz
+        -
+          in: header
+          name: token
+          description: ''
+          example: ''
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 498
+                  msg: 'Invalid token. Please generate a new token.'
+                properties:
+                  status:
+                    type: integer
+                    example: 498
+                  msg:
+                    type: string
+                    example: 'Invalid token. Please generate a new token.'
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/patient/details:
+    get:
+      summary: 'Patient Details'
+      operationId: patientDetails
+      description: 'This API will return patient specific information based on patient id. It will return patient information, rxs, rx_refills, refill orders, refill shipments in a single API call'
+      parameters:
+        -
+          in: query
+          name: newleaf_customer_id
+          description: 'Please enter newleaf_customer_id.'
+          example: null
+          required: true
+          schema:
+            type: string
+            description: 'Please enter newleaf_customer_id.'
+            example: null
+        -
+          in: header
+          name: token
+          description: ''
+          example: ''
+          schema:
+            type: string
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: '500'
+                  msg: 'Invalid token. Please generate a new token.'
+                properties:
+                  status:
+                    type: string
+                    example: '500'
+                  msg:
+                    type: string
+                    example: 'Invalid token. Please generate a new token.'
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
