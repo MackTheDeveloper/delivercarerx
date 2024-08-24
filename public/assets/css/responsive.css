@@ -1,0 +1,95 @@
+@media (max-width: 991px) {
+  .date-and-filter {
+    margin-top: 24px;
+  }
+}
+@media (max-width: 767px) {
+  .date-and-filter > div {
+    margin-right: 0;
+    margin-bottom: 16px !important;
+  }
+  .date-and-filter > div:last-child {
+    margin-bottom: 0 !important;
+  }
+  .date-and-filter > .form-group, .date-filter {
+    width: 100%;
+  }
+}
+@media (max-width: 575px) {
+  .login .logo {
+    margin-bottom: 14px;
+  }
+  .login .card .card {
+    padding: 0 !important;
+  }
+  .login .card-title h4 {
+    margin-bottom: 16px !important;
+  }
+  .cart-btn-wrapper {
+    width: 100%;
+  }
+  html .navbar-static .navbar-container,
+html .navbar-sticky .navbar-container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .header-navbar .navbar-container ul.nav li a.dropdown-user-link {
+    padding-right: 0;
+  }
+  html .navbar-sticky .app-content .content-wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:first-child {
+    padding-right: 0;
+    margin-bottom: 8px;
+  }
+  div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-child {
+    padding-left: 0;
+  }
+  .dataTables_filter .form-control-sm {
+    width: 180px !important;
+  }
+  div.dataTables_wrapper div.dataTables_filter,
+div.dataTables_wrapper div.dataTables_length {
+    margin-top: 0;
+  }
+  .card-body {
+    padding: 18px;
+  }
+  div.dataTables_wrapper div.dataTables_length {
+    margin-bottom: 6px;
+  }
+  footer.footer {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .nav.nav-tabs .nav-item:last-child,
+.nav.nav-pills .nav-item:last-child {
+    margin-right: 0;
+  }
+  .nav.nav-tabs ~ .tab-content {
+    padding-left: 0;
+  }
+  .date-and-filter .date-filter {
+    margin-right: 0;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    width: 100%;
+  }
+  .date-and-filter .filter-by-status {
+    width: 100%;
+  }
+}
+@media (max-width: 359px) {
+  .center-btn-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+  .center-btn-wrapper .btn {
+    width: 100%;
+  }
+  .center-btn-wrapper .btn:last-child {
+    margin-top: 16px;
+  }
+}/*# sourceMappingURL=responsive.css.map */

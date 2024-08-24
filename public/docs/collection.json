@@ -1,0 +1,781 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/127.0.0.1:8000"
+        }
+    ],
+    "info": {
+        "name": "DeliverCare",
+        "_postman_id": "81c71717-dc99-4a47-9efc-09b5ae33f448",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "Generate Token",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/generate-token",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/generate-token"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"username\":\"anshul\",\"password\":12345678}"
+                        },
+                        "description": "This API will allow a partner to create API token with some x hours expiry and this token will be used for all subsequent API calls to fetch the data.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Verify Token",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/validate-token\/:token",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/validate-token\/:token",
+                            "variable": [
+                                {
+                                    "id": "token",
+                                    "key": "token",
+                                    "value": "kYX6G6AnOfd2XX4jcLXXXXll8AxLXXXXx3BaQmjXXXXXyU9oKj1oSg8jNwmineMu",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "This API will allow  you to check validity of a token",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "35"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Patient List",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/patient\/list",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "",
+                                    "description": "The page number for pagination.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "",
+                                    "description": "The number of items per page.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "description": "Enter your search criteria to list results. You can search by patient name, city, and state.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/patient\/list?page=&limit=&search="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "token",
+                                "value": ""
+                            }
+                        ],
+                        "body": null,
+                        "description": "This API will allow fetch patients records. This will return only patient listing with basic information and IDs.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "34"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\"status\":\"500\",\"msg\":\"Invalid token. Please generate a new token.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Rxs Listing",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/rxs\/list\/:id",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "",
+                                    "description": "The page number for pagination.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "",
+                                    "description": "The number of items per page.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "description": "Please enter rx number to search.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/rxs\/list\/:id?page=&limit=&search=",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "Newleaf Id for rxs."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "token",
+                                "value": ""
+                            }
+                        ],
+                        "body": null,
+                        "description": "This API will return all Rx information based on patient_id. Search will be available based on Rx number.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "33"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":\"498\",\"msg\":\"Invalid token. Please generate a new token.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Drug Listing",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/drugs\/list",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "",
+                                    "description": "The page number for pagination.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "",
+                                    "description": "The number of items per page.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "description": "Enter your search criteria to list results. You can search by drug name.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/drugs\/list?page=&limit=&search="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "token",
+                                "value": ""
+                            }
+                        ],
+                        "body": null,
+                        "description": "This API will return all drugs available in the database. Search will be available based on drug name.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "32"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":\"498\",\"msg\":\"Invalid token. Please generate a new token.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Refill Shipment Listing",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/refill-shipment\/list",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "",
+                                    "description": "The page number for pagination.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "",
+                                    "description": "The number of items per page.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "description": "Enter your search criteria to list results. You can search by patient name, courier name,order_number,order_date,tracking_number.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/refill-shipment\/list?page=&limit=&search="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "token",
+                                "value": ""
+                            }
+                        ],
+                        "body": null,
+                        "description": "This API will return all refill shipments of patients. Search will be available based on patient name, order number, tracking number.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "31"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":\"498\",\"msg\":\"Invalid token. Please generate a new token.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Refills Listing",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/refills\/list",
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "",
+                                    "description": "The page number for pagination.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "",
+                                    "description": "The number of items per page.",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "description": "Please enter search parameter. you can search by patient_name, newleaf_order_number, order_number, tracking_number",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "status",
+                                    "value": "",
+                                    "description": "Please enter status, where as 1 (Pending) or 2 (In Progress) or 3 (Shipped)",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "start_date",
+                                    "value": "",
+                                    "description": "Please enter start date, the format is Y-m-d",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "end_date",
+                                    "value": "",
+                                    "description": "Please enter end date, the format is Y-m-d",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/refills\/list?page=&limit=&search=&status=&start_date=&end_date="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "token",
+                                "value": ""
+                            }
+                        ],
+                        "body": null,
+                        "description": "This API will allow fetch refill orders records.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "30"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\"status\":\"500\",\"msg\":\"Invalid token. Please generate a new token.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Refills Details",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/refills\/details",
+                            "query": [
+                                {
+                                    "key": "rx_number",
+                                    "value": "",
+                                    "description": "Please enter rx_number.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "patient_id",
+                                    "value": "",
+                                    "description": "Please enter patient_id.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/refills\/details?rx_number=&patient_id="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "token",
+                                "value": ""
+                            }
+                        ],
+                        "body": null,
+                        "description": "This API will return all refill history of particular Rx number and patient_id.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "29"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\"status\":\"500\",\"msg\":\"Invalid token. Please generate a new token.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Refills Place Order",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/refills\/place-order",
+                            "query": [
+                                {
+                                    "key": "email",
+                                    "value": "claudine.jaskolski%40delivercare.com",
+                                    "description": "Must be a valid nurse email address.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "patient_id",
+                                    "value": "d382eebf-x27x-40c0-x9x9-xxxe2e6c9047",
+                                    "description": "This patient id must match to patient newleaf_customer_id",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "rx_numbers",
+                                    "value": "7767577-R",
+                                    "description": "It needs to be valid refillable rx number and assigned to this patient id, where this 7767577-R is separated by the number(7767577) and R,N,C that is type of refill",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "shipping_method",
+                                    "value": "FD1",
+                                    "description": "Please enter required shipping method from below six example Only!! Example: FD2, FD1, FD3, RSD, FDS, ES2, RST",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "signature_required",
+                                    "value": "1",
+                                    "description": "Please specify signature requirement, by passing 1 is signature required",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "notes",
+                                    "value": "xyz",
+                                    "description": "Please add notes for refill order",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/refills\/place-order?email=claudine.jaskolski%40delivercare.com&patient_id=d382eebf-x27x-40c0-x9x9-xxxe2e6c9047&rx_numbers=7767577-R&shipping_method=FD1&signature_required=1&notes=xyz"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "token",
+                                "value": ""
+                            }
+                        ],
+                        "body": null,
+                        "description": " This API will allow to place refill orders for patients and return order id.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "52"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"status\":498,\"msg\":\"Invalid token. Please generate a new token.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Patient Details",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/patient\/details",
+                            "query": [
+                                {
+                                    "key": "newleaf_customer_id",
+                                    "value": "",
+                                    "description": "Please enter newleaf_customer_id.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/patient\/details?newleaf_customer_id="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "token",
+                                "value": ""
+                            }
+                        ],
+                        "body": null,
+                        "description": "This API will return patient specific information based on patient id. It will return patient information, rxs, rx_refills, refill orders, refill shipments in a single API call",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "28"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\"status\":\"500\",\"msg\":\"Invalid token. Please generate a new token.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

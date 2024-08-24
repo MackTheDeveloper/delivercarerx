@@ -1,0 +1,666 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/generate-token
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Generate Token'
+      description: 'This API will allow a partner to create API token with some x hours expiry and this token will be used for all subsequent API calls to fetch the data.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      username:
+        name: username
+        description: 'Please enter your username for authentication.'
+        required: true
+        example: anshul
+        type: string
+        enumValues: []
+        custom: []
+      password:
+        name: password
+        description: 'Please enter your password for authentication.'
+        required: true
+        example: 12345678
+        type: string
+        enumValues: []
+        custom: []
+    cleanBodyParameters:
+      username: corporis
+      password: repellat
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/validate-token/{token}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Verify Token'
+      description: 'This API will allow  you to check validity of a token'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      token:
+        name: token
+        description: ''
+        required: true
+        example: kYX6G6AnOfd2XX4jcLXXXXll8AxLXXXXx3BaQmjXXXXXyU9oKj1oSg8jNwmineMu
+        type: string
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      token: molestiae
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: ''
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '35'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/patient/list
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Patient List'
+      description: 'This API will allow fetch patients records. This will return only patient listing with basic information and IDs.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      token: ''
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      page:
+        name: page
+        description: 'The page number for pagination.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        custom: []
+      limit:
+        name: limit
+        description: 'The number of items per page.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        custom: []
+      search:
+        name: search
+        description: 'Enter your search criteria to list results. You can search by patient name, city, and state.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 500
+        content: '{"status":"500","msg":"Invalid token. Please generate a new token."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '34'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/rxs/list/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Rxs Listing'
+      description: 'This API will return all Rx information based on patient_id. Search will be available based on Rx number.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      token: ''
+    urlParameters:
+      id:
+        name: id
+        description: 'Newleaf Id for rxs.'
+        required: true
+        example: 
+        type: string
+        enumValues: []
+        custom: []
+    cleanUrlParameters:
+      id: nostrum
+    queryParameters:
+      page:
+        name: page
+        description: 'The page number for pagination.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        custom: []
+      limit:
+        name: limit
+        description: 'The number of items per page.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        custom: []
+      search:
+        name: search
+        description: 'Please enter rx number to search.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"status":"498","msg":"Invalid token. Please generate a new token."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '33'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/drugs/list
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Drug Listing'
+      description: 'This API will return all drugs available in the database. Search will be available based on drug name.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      token: ''
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      page:
+        name: page
+        description: 'The page number for pagination.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        custom: []
+      limit:
+        name: limit
+        description: 'The number of items per page.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        custom: []
+      search:
+        name: search
+        description: 'Enter your search criteria to list results. You can search by drug name.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"status":"498","msg":"Invalid token. Please generate a new token."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '32'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/refill-shipment/list
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Refill Shipment Listing'
+      description: 'This API will return all refill shipments of patients. Search will be available based on patient name, order number, tracking number.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      token: ''
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      page:
+        name: page
+        description: 'The page number for pagination.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        custom: []
+      limit:
+        name: limit
+        description: 'The number of items per page.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        custom: []
+      search:
+        name: search
+        description: 'Enter your search criteria to list results. You can search by patient name, courier name,order_number,order_date,tracking_number.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"status":"498","msg":"Invalid token. Please generate a new token."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '31'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/refills/list
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Refills Listing'
+      description: 'This API will allow fetch refill orders records.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      token: ''
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      page:
+        name: page
+        description: 'The page number for pagination.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        custom: []
+      limit:
+        name: limit
+        description: 'The number of items per page.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        custom: []
+      search:
+        name: search
+        description: 'Please enter search parameter. you can search by patient_name, newleaf_order_number, order_number, tracking_number'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+      status:
+        name: status
+        description: 'Please enter status, where as 1 (Pending) or 2 (In Progress) or 3 (Shipped)'
+        required: false
+        example: null
+        type: int
+        enumValues: []
+        custom: []
+      start_date:
+        name: start_date
+        description: 'Please enter start date, the format is Y-m-d'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+      end_date:
+        name: end_date
+        description: 'Please enter end date, the format is Y-m-d'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 500
+        content: '{"status":"500","msg":"Invalid token. Please generate a new token."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '30'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/refills/details
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Refills Details'
+      description: 'This API will return all refill history of particular Rx number and patient_id.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      token: ''
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      rx_number:
+        name: rx_number
+        description: 'Please enter rx_number.'
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+      patient_id:
+        name: patient_id
+        description: 'Please enter patient_id.'
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 500
+        content: '{"status":"500","msg":"Invalid token. Please generate a new token."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '29'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/refills/place-order
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Refills Place Order'
+      description: ' This API will allow to place refill orders for patients and return order id.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      token: ''
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      email:
+        name: email
+        description: 'Must be a valid nurse email address.'
+        required: true
+        example: claudine.jaskolski@delivercare.com
+        type: string
+        enumValues: []
+        custom: []
+      patient_id:
+        name: patient_id
+        description: 'This patient id must match to patient newleaf_customer_id'
+        required: true
+        example: d382eebf-x27x-40c0-x9x9-xxxe2e6c9047
+        type: string
+        enumValues: []
+        custom: []
+      rx_numbers:
+        name: rx_numbers
+        description: 'It needs to be valid refillable rx number and assigned to this patient id, where this 7767577-R is separated by the number(7767577) and R,N,C that is type of refill'
+        required: true
+        example: 7767577-R
+        type: string
+        enumValues: []
+        custom: []
+      shipping_method:
+        name: shipping_method
+        description: 'Please enter required shipping method from below six example Only!! Example: FD2, FD1, FD3, RSD, FDS, ES2, RST'
+        required: true
+        example: FD1
+        type: string
+        enumValues: []
+        custom: []
+      signature_required:
+        name: signature_required
+        description: 'Please specify signature requirement, by passing 1 is signature required'
+        required: false
+        example: 1
+        type: string
+        enumValues: []
+        custom: []
+      notes:
+        name: notes
+        description: 'Please add notes for refill order'
+        required: false
+        example: xyz
+        type: string
+        enumValues: []
+        custom: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters:
+      email: claudine.jaskolski@example.net
+      patient_id: nemo
+      rx_numbers: qui
+      shipping_method: rem
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"status":498,"msg":"Invalid token. Please generate a new token."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '52'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/patient/details
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Patient Details'
+      description: 'This API will return patient specific information based on patient id. It will return patient information, rxs, rx_refills, refill orders, refill shipments in a single API call'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      token: ''
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      newleaf_customer_id:
+        name: newleaf_customer_id
+        description: 'Please enter newleaf_customer_id.'
+        required: true
+        example: null
+        type: string
+        enumValues: []
+        custom: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 500
+        content: '{"status":"500","msg":"Invalid token. Please generate a new token."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '28'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
